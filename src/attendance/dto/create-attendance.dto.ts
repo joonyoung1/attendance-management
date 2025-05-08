@@ -1,5 +1,6 @@
 import { Type } from 'class-transformer';
-import { IsString, IsNotEmpty, IsDate } from 'class-validator';
+import { IsString, IsNotEmpty, IsDate, IsEnum } from 'class-validator';
+import { AttendanceStatus } from '../enums/attendance-status.enum';
 
 export class CreateAttendanceDto {
   @IsString()
@@ -9,5 +10,9 @@ export class CreateAttendanceDto {
   @Type(() => Date)
   @IsDate()
   @IsNotEmpty()
-  date: Date;
+  timestamp: Date;
+
+  @IsEnum(AttendanceStatus)
+  @IsNotEmpty()
+  status: AttendanceStatus;
 }
